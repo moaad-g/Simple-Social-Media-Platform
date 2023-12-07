@@ -20,14 +20,18 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index'])
+    ->name("posts.index");;
 
 Route::get('/posts/{id}', [PostController::class, 'show'])
     ->name("posts.show");
 
-// Route::get('/posts/{post_id?}', function ($post_id= null) {
-//    return view('posts.postpage',['post_id'=>$post_id]);
-// });
+Route::get('/posts/create', [PostController::class, 'create'])
+    ->name("posts.create");
+
+Route::post('/posts/store', [PostController::class, 'store'])
+    ->name("posts.store");
+
 
 
 Route::get('/dashboard', function () {

@@ -4,8 +4,8 @@
 
 @section('content')
     <ul>
-        <li>Something: {{ $post -> content }}<li>
-        <li>Something: {{ $post -> content }}<li>
+        <li>{{ $post -> content }}</li>
+        <li>by {{ $post->user->information->name }}</li>
     </ul>
 
 @endsection
