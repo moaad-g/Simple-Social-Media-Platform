@@ -3,7 +3,7 @@
 @section('title', 'Posts:')
 
 @section('content')
-    @if ($post_id)
+    @if ($post_id)s
         <div>
             <p>baked beans</p>
         </div>

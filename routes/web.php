@@ -20,7 +20,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/p', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
+
+Route::get('/posts/{id}', [PostController::class, 'show'])
+    ->name("posts.show");
 
 // Route::get('/posts/{post_id?}', function ($post_id= null) {
 //    return view('posts.postpage',['post_id'=>$post_id]);

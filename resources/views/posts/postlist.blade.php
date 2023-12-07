@@ -6,7 +6,7 @@
     <div>
         <ul>
         @foreach ($post_list as $post)
-        <li>{{ $post -> content }}</li>
+        <li><a href="{{ route('posts.show', ['id'=>$post->id]) }}"> {{ $post->content }}</a></li>
         @endforeach
         </ul>
     </div>
