@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts/{post_id?}', function ($post_id= null) {
-    return view('posts',['post_id'=>$post_id]);
-});
+
+Route::get('/p', [PostController::class, 'index']);
+
+// Route::get('/posts/{post_id?}', function ($post_id= null) {
+//    return view('posts.postpage',['post_id'=>$post_id]);
+// });
 
 
 Route::get('/dashboard', function () {
