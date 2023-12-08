@@ -9,6 +9,13 @@ class Information extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'address',
+        'phone_number',
+        'user_id'
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
 
         $user_info = Information::create([
             'name' => $request->name,
-            'adress' => ($request->address.' '.$request->postcode),
+            'address' => $request->address.' '.$request->postcode,
             'phone_number' => $request->phone_number,
             'user_id' => $user->id,
         ]);
