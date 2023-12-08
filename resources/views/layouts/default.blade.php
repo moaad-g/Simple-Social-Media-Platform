@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-
 <head>
-    <title>BaceFook - @yield('title')</title>
+    @livewireStyles
+    <livewire:navbar /> 
 </head>
 <body>
     <h1>BaceFook - @yield('title')</h1>
@@ -9,7 +9,7 @@
     <div>
         @yield('content')
     </div>
-@if ($errors->any())
+    @if ($errors->any())
     <div>
         Errors:
         <ul>
@@ -18,5 +18,6 @@
         @endforeach
         </ul>
     </div>
-@endif
+    @endif
+    @livewireScripts
 </body>
