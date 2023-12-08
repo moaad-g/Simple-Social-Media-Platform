@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -36,6 +37,16 @@ class PostController extends Controller
         $validateData = $request->validate([
             'content' => 'required|max:280',
         ]);
+        $user_id = Auth::id();
+        $new_post = Post::create([
+            'content' => $request->content,
+            'user_id' => $user_id,
+        ]);
+
+        session()->flash('message', 'post successful.');
+
+        return redirect()->route('posts.show', ['id'=>$new_post->id]);
+
     }
 
     /**

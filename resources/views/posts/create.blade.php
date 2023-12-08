@@ -9,5 +9,4 @@
         <input type="submit" value="Post">
         <a href="{{ route('posts.index') }}">Back</a>
     </form>
-        
 @endsection
