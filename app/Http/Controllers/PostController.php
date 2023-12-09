@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -25,7 +25,12 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('posts.create');
+        if (Auth::check()){
+            return view('posts.create');
+        } else {
+            return redirect()->route('login');
+        }
+        
     }
 
     /**
@@ -56,7 +61,8 @@ class PostController extends Controller
     {
         //
         $post = Post::findOrFail($id);
-        return view('posts.show', ['post' =>$post]);
+        $comment_list = DB::table('comments')->select('content')->where('post_id', $id)->orderBy('updated_at','desc')->get();
+        return view('posts.show', ['post' =>$post , 'comment_list'=>$comment_list ]);
     }
 
     /**
