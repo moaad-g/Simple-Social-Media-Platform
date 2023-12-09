@@ -5,18 +5,17 @@
 @section('content')
 <div>
     <p>{{ $post -> content }}</p>
-    <p>{{ $post->user->information->name }}</p>
+    <p>Posted By:{{ $post->user->information->name }}</p>
 </div>
-<div class=>
-
+<div>
     <!-- <a href="{{ route('posts.show', ['id'=>$post->user->id]) }}"> {{ $post->user->information->name }}</a> -->
     <p>comments:</p>
     <ul>
         @foreach ( $comment_list as $comment )
-            <li>{{ $comment -> content }}</li>
+            <li class="text-black hover:bg-blue-100">{{ $comment -> content }}</li>
         @endforeach
     </ul>
-<div>
+</div>
 
 
 @endsection
