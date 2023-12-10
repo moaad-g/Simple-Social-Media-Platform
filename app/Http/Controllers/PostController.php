@@ -28,7 +28,9 @@ class PostController extends Controller
         if (Auth::check()){
             return view('posts.create');
         } else {
-            session()->flash('message', 'You Must Be Logged In To Do That.');
+            session()->flash('message', 'You Must Be Logged In To Post.');
+            return redirect()->route('posts.index');
+
         }
         
     }

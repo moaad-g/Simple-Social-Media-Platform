@@ -9,10 +9,13 @@
         </head>
         <body>
             <div class="min-h-screen bg-gray-300 py-2 px-2">
-                <h1>BaceFook - @yield('title')</h1>
                 @if (session('message'))
-                    <h3>{{ session('message') }}</h3>
+                <div px-10>
+                    <h3 class="text-white text-center font-bold bg-blue-400 px-4 py-2 rounded">{{ session('message') }}</h3>
+                </div>
                 @endif
+                <div>
+                <h1>BaceFook - @yield('title')</h1>
                 <div>
                     @yield('content')
                 </div>
