@@ -15,7 +15,7 @@
                 </div>
                 @endif
                 <div>
-                <h1>BaceFook - @yield('title')</h1>
+                <h1 class="text-center font-bold underline">@yield('title')</h1>
                 <div>
                     @yield('content')
                 </div>
