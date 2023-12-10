@@ -21,10 +21,10 @@
                 </div>
                 @if ($errors->any())
                 <div>
-                    Errors:
+                    <p class="underline font-bold">Errors:</p>
                     <ul>
                     @foreach ($errors->all() as $error)
-                        <li class="text-red">{{ $error }}</li>
+                        <li class="text-red-600 font-bold">{{ $error }}</li>
                     @endforeach
                     </ul>
                 </div>
