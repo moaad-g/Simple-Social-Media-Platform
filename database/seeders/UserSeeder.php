@@ -17,12 +17,18 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($x = 0; $x < rand(1,10); $x++) {
-            $user = User::factory()->create();
-            $userinfo = Information::factory()->for($user)->create();
-            for ($y = 0; $y < rand(1,3); $y++)
-                $post = Post::factory()->for($user)->has(Comment::factory()->count(rand(1,5)))->create();
-                #
-        };
+        // for ($x = 0; $x < rand(1,10); $x++) {
+        //     $user = User::factory()->create();
+        //     $userinfo = Information::factory()->for($user)->create();
+        //     for ($y = 0; $y < rand(1,3); $y++)
+        //         $post = Post::factory()->for($user)->has(Comment::factory()->count(rand(1,5)))->create();
+        //         #
+        // };
+        for ($x = 0; $x < 6; $x++) {
+                $user = User::factory()->create();
+                $userinfo = Information::factory()->for($user)->create();
+        }
+        Post::factory()->count(20)->create();
+        Comment::factory()->count(20)->create();
     }
 }

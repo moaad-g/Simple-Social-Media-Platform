@@ -39,10 +39,11 @@ class RegisteredUserController extends Controller
             'phone_number' => ['required', 'numeric', 'digits:11'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $admin_default = "no";
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'is_admin' => $admin_default
         ]);
 
         $user_info = Information::create([
