@@ -41,6 +41,10 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+        $user = User::findOrFail($id);
+        $comment_list = $user->comments()->get();
+        $post_list = $user->posts()->get();
+        return view('users.show', ['user' =>$user , 'comment_list'=>$comment_list , 'post_list'=>$post_list  ]);
     }
 
     /**
