@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -62,9 +64,17 @@ class PostController extends Controller
     public function show(string $id)
     {
         //
+        $user_id = Auth::id();
+        $current_user = User::findOrFail($user_id);
+        if ($current_user->is_admin == "no"){
+            $is_admin = FALSE;
+        }else {
+            $is_admin = TRUE;
+        }
+
         $post = Post::findOrFail($id);
-        $comment_list = DB::table('comments')->select('content')->where('post_id', $id)->orderBy('updated_at','desc')->get();
-        return view('posts.show', ['post' =>$post , 'comment_list'=>$comment_list ]);
+        $comment_list = $post->comments()->get();
+        return view('posts.show', ['post' =>$post , 'comment_list'=>$comment_list , 'is_admin'=>$is_admin ]);
     }
 
     /**

@@ -32,7 +32,7 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $request->information()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -55,6 +55,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('/posts');
     }
 }
