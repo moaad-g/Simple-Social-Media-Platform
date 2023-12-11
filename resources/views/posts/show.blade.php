@@ -9,7 +9,11 @@
 <div>
     <p class="font-bold text-sm py-3">Posted By:  {{ $post->user->information->name }}</p>
     @if (($is_admin) || $post->user_id == Auth::id())
-     <a href="{{ route('posts.index') }}" class="text-white font-bold bg-red-600 hover:bg-red-700 px-4 py-1 rounded" >Delete</a>
+    <form method="POST" action="{{ route('posts.destroy', ['id'=>$post->id]) }}">
+        @csrf
+        @method('DELETE')
+        <input class="text-white font-bold bg-red-600 hover:bg-red-700 px-4 py-1 rounded" type="submit" value="Delete">
+    </form>
     @endif
 </div>
 <div class="py-10">

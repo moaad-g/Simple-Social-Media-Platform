@@ -99,5 +99,19 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         //
+        $post = Post::findOrFail($id);
+        $post->comments()->delete();
+        $post->delete();
+        
+        return redirect()->route('posts.index')->with('message','post deleted');
+    }
+
+    public function destroycomm(string $id , string $comm_id)
+    {
+        //
+        $comment = Post::findOrFail($comm_id);
+        $comment->delete();
+        
+        return redirect()->route('posts.show', ['id'=>$id])
     }
 }
