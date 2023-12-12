@@ -43,10 +43,9 @@ class Comview extends Component
                 'post_id' => $this->post->id
             ]);
             $this->comment_list->push($new_comment);
-            return view('livewire.comview',['comment_list'=>$this->comment_list]);
-
             $this->expanded = false;
             $this->content = '';
+            return view('livewire.comview',['comment_list'=>$this->comment_list]);
         } else {
             
         }
