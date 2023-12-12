@@ -16,30 +16,8 @@
     </form>
     @endif
 </div>
-@if ( Auth::check())
-<div class="py-1">
-    <livewire:combox />
-</div>
-@endif
 <div class="py-4">
-    <!-- <a href="{{ route('posts.show', ['id'=>$post->user->id]) }}"> {{ $post->user->information->name }}</a> -->
     <p class="font-bold text-sm underline">Comments:</p>
-    @foreach ( $comment_list as $comment )
-    <ul>
-        <li class="bg-gray-300 py-1">{{ $comment->content }}</li>
-        <div class="flex justify-start">
-            <li class="bg-gray-300 text-sm px-5 hover:text-blue-400"><a href="{{ route('users.show', ['id'=>$comment->user->id]) }}">{{ $comment->user->information->name  }}</a></li>
-            @if (($is_admin) || $post->user_id == Auth::id())
-            <form method="POST" action="{{ route('posts.destroycomm', ['id'=>$post->id , 'comm_id'=>$comment->id]) }}">
-                @csrf
-                @method('DELETE')
-                <input class="text-white font-bold bg-red-600 hover:bg-red-700 px-4 py-1 rounded text-xs" type="submit" value="Delete Comment">
-            </form>
-            @endif
-        <div>
-    </ul>
-    @endforeach
+    <livewire:comview :post="$post" :is_admin="$is_admin">
 </div>
-
-
 @endsection

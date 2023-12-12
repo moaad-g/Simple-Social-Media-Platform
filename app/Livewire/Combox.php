@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Combox extends Component
 {
@@ -22,8 +23,18 @@ class Combox extends Component
     public function collapse()
     {
         $this->expanded = false;
-        $this->text = ''; // Reset the text when collapsing
+        $this->content = ''; // Reset the text when collapsing
     }
+
+    public function save()
+    {
+        if (((0<Str::length(this->$content)))&&((181>Str::length(this->$content)))){
+            redirect()->route('posts.index');
+        } else {
+            
+        }
+    }
+    
     
 
 }

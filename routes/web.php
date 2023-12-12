@@ -37,8 +37,11 @@ Route::get('/posts/{id}', [PostController::class, 'show'])
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])
     ->name("posts.destroy");
 
-Route::delete('/posts/{id}/deletecomment/{comm_id}', [PostController::class, 'destroycomm'])
+Route::delete('/posts/{id}/comment/{comm_id}', [PostController::class, 'destroycomm'])
     ->name("posts.destroycomm");
+
+Route::post('/posts/{id}/comment/', [PostController::class, 'addcomm'])
+    ->name("posts.addcomm");
 
 
 Route::get('/users', [UserController::class, 'index'])
