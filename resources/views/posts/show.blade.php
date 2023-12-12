@@ -8,7 +8,7 @@
 </div>
 <div>
     <p class="font-bold text-sm py-3 hover:text-blue-400"><a href="{{ route('users.show', ['id'=>$post->user->id]) }}">Posted By:  {{ $post->user->information->name }}</a></p>
-    @if (($is_admin) || $post->user_id == Auth::id())
+    @if ( Auth::check() && (($is_admin) || $post->user_id == Auth::id()))
     <form method="POST" action="{{ route('posts.destroy', ['id'=>$post->id]) }}">
         @csrf
         @method('DELETE')
@@ -16,9 +16,14 @@
     </form>
     @endif
 </div>
-<div class="py-10">
+@if ( Auth::check())
+<div class="py-1">
+    <livewire:combox />
+</div>
+@endif
+<div class="py-4">
     <!-- <a href="{{ route('posts.show', ['id'=>$post->user->id]) }}"> {{ $post->user->information->name }}</a> -->
-    <p class="font-bold text-sm">Comments:</p>
+    <p class="font-bold text-sm underline">Comments:</p>
     @foreach ( $comment_list as $comment )
     <ul>
         <li class="bg-gray-300 py-1">{{ $comment->content }}</li>

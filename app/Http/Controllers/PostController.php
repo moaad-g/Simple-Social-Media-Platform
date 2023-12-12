@@ -64,12 +64,17 @@ class PostController extends Controller
     public function show(string $id)
     {
         //
-        $user_id = Auth::id();
-        $current_user = User::findOrFail($user_id);
-        if ($current_user->is_admin == "no"){
+        if (Auth::check()){
+            $user_id = Auth::id();
+            $current_user = User::findOrFail($user_id);
+            if ($current_user->is_admin == "no"){
+                $is_admin = FALSE;
+            }else {
+                $is_admin = TRUE;
+            }
+        } else {
             $is_admin = FALSE;
-        }else {
-            $is_admin = TRUE;
+            
         }
 
         $post = Post::findOrFail($id);
