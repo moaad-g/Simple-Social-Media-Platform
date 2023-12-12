@@ -34,7 +34,7 @@ class Comedit extends Component
     public function save_edit()
     {
         if (((0<Str::length($this->content)))&&((181>Str::length($this->content)))){
-            $this->expanded = false;
+            $this->expanded_edit = false;
             $this->comment->content = $this->content;
             $this->comment->save();
             $this->content = '';
