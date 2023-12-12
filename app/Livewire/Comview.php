@@ -46,8 +46,7 @@ class Comview extends Component
             $this->expanded = false;
             $this->content = '';
             return view('livewire.comview',['comment_list'=>$this->comment_list]);
-        } else {
-            
+        } else {            
         }
     }
     

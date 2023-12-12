@@ -29,11 +29,18 @@ class Comedit extends Component
     public function collapse_edit()
     {
         $this->expanded_edit = false;
-        $this->edit_content = '';
+        $this->content = '';
     }
     public function save_edit()
     {
-        $this->expanded_edit = false;
-        $this->edit_content = '';
+        if (((0<Str::length($this->content)))&&((181>Str::length($this->content)))){
+            $this->expanded = false;
+            $this->comment->content = $this->content;
+            $this->comment->save();
+            $this->content = '';
+            return redirect()->route('posts.show', ['id'=>$this->comment->post_id]);
+        } else {            
+        }
+
     }
 }
