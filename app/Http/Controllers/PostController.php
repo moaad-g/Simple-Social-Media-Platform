@@ -53,7 +53,6 @@ class PostController extends Controller
         ]);
 
         session()->flash('message', 'post successful.');
-
         return redirect()->route('posts.show', ['id'=>$new_post->id]);
     }
 
@@ -87,6 +86,8 @@ class PostController extends Controller
     public function edit(string $id)
     {
         //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post'=>$post]);
     }
 
     /**
@@ -117,22 +118,5 @@ class PostController extends Controller
         $comment->delete();
         
         return redirect()->route('posts.show', ['id'=>$id])->with('message','comment deleted');
-    }
-
-    public function addcomm(Request $request)
-    {
-        //
-        $validateData = $request->validate([
-            'content' => 'required|max:280',
-        ]);
-        $user_id = Auth::id();
-        $new_post = Post::create([
-            'content' => $request->content,
-            'user_id' => $user_id,
-        ]);
-
-        session()->flash('message', 'post successful.');
-
-        return redirect()->route('posts.show', ['id'=>$new_post->id]);
     }
 }

@@ -15,6 +15,9 @@
         <input class="text-white font-bold bg-red-600 hover:bg-red-700 px-4 py-1 rounded" type="submit" value="Delete Post">
     </form>
     @endif
+    @if ( Auth::check() && ($post->user_id == Auth::id()))
+        <a href="{{ route('posts.edit', ['id'=>$post->id])}}" class="text-white font-bold bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Edit Post</a>
+    @endif
 </div>
 <div class="py-4">
     <p class="font-bold text-sm underline">Comments:</p>
