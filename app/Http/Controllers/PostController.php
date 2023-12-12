@@ -96,8 +96,14 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validateData = $request->validate([
+            'content' => 'required|max:280',
+        ]);
+        $post = Post::findOrFail($id);
+        $post->content = $request->content;
+        $post->save();
+        return redirect()->route('posts.show', ['id'=>$id]);
     }
-
     /**
      * Remove the specified resource from storage.
      */
