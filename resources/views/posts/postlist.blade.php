@@ -11,4 +11,7 @@
             </div>
         @endforeach
     </div>
+    <div class="flex items-center py-3">
+        {{ $post_list->links() }}
+    </div>
 @endsection
