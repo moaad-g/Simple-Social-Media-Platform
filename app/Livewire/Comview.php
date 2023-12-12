@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Mail\CommentNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
 
 class Comview extends Component
 {
@@ -45,6 +47,7 @@ class Comview extends Component
             $this->comment_list->push($new_comment);
             $this->expanded = false;
             $this->content = '';
+            Mail::to($this->post->user->email)->send(new CommentNotification());
             return view('livewire.comview',['comment_list'=>$this->comment_list]);
         } else {            
         }
