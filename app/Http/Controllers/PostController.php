@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -21,14 +22,23 @@ class PostController extends Controller
         return view('posts.postlist', ['post_list' =>$post_list]);
     }
 
+    public function tagindex(string $id)
+    {
+        //
+        $tag = Tag::findOrFail($id);
+        $post_list = $tag->posts()->paginate(9);
+        return view('posts.postlist', ['post_list' =>$post_list]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         //
+        $tag_list = Tag::all();
         if (Auth::check()){
-            return view('posts.create');
+            return view('posts.create' , ['tag_list'=>$tag_list]);
         } else {
             session()->flash('message', 'You Must Be Logged In To Post.');
             return redirect()->route('posts.index');
@@ -51,7 +61,10 @@ class PostController extends Controller
             'content' => $request->content,
             'user_id' => $user_id,
         ]);
-
+        
+        foreach ($request->tag_list as $tag){
+            $new_post->tags()->attach($tag);
+        }
         session()->flash('message', 'post successful.');
         return redirect()->route('posts.show', ['id'=>$new_post->id]);
     }

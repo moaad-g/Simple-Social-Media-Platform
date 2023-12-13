@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/posts', [PostController::class, 'index'])
     ->name("posts.index");
 
+Route::get('/posts/tag/{id}', [PostController::class, 'tagindex'])
+    ->name("posts.tagindex");
+
 Route::get('/posts/create', [PostController::class, 'create'])
 ->name("posts.create");
 

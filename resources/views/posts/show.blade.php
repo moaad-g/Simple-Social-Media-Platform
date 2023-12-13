@@ -7,6 +7,11 @@
     <p>{{ $post -> content }}</p>
 </div>
 <p class="font-bold text-sm py-3 hover:text-blue-400"><a href="{{ route('users.show', ['id'=>$post->user->id]) }}">Posted By:  {{ $post->user->information->name }}</a></p>
+<div class="flex space-x-3">
+    @foreach ($post->tags as $tag)
+        <a href="{{ route('posts.tagindex', ['id'=>$tag->id])}}" class="hover:text-blue-300">#{{ $tag->name }}</p>
+    @endforeach
+</div>
 <div class="flex space-x-4">
     @if ( Auth::check() && (($is_admin) || $post->user_id == Auth::id()))
     <form method="POST" action="{{ route('posts.destroy', ['id'=>$post->id]) }}">
