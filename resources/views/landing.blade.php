@@ -9,5 +9,4 @@
         <a href="/register" class="text-white font-bold bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded" >Register</a>
     </div>
 
-
 @endsection

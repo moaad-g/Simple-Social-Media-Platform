@@ -17,8 +17,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => fake()->text(),
-            'image_path' => "",
+            'content' => fake()->realText($maxNbChars = 200),
+            'image_path' => '',
             'user_id' => rand(1,5)
             //
         ];

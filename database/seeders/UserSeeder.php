@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 $userinfo = Information::factory()->for($user)->create();
         }
         Post::factory()->count(20)->create();
-        Comment::factory()->count(20)->create();
+        Comment::factory()->count(100)->create();
 
         $t1 = Tag::create([
             'name' => 'funny'
@@ -44,12 +44,20 @@ class UserSeeder extends Seeder
             'name' => 'sad'
         ]);
 
+        $all_posts = Post::all();
+        foreach ($all_posts as $post){
+            $y = rand(1,10);
+            if ($y%2 == 0){
+                $t1->posts()->attach($post->id);
+            }
+            if ($y < 6){
+                $t2->posts()->attach($post->id);
+            }
+            if ($y > 5){
+                $t2->posts()->attach($post->id);
+            }
 
-
-        $t1->posts()->attach(1);
-        $t2->posts()->attach(1);
-
-        $t3->posts()->attach(5);
+        }
 
     }
 }
