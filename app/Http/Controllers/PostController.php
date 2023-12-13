@@ -18,8 +18,8 @@ class PostController extends Controller
     public function index()
     {
         //
-        $post_list = Post::paginate(9);
-        return view('posts.postlist', ['post_list' =>$post_list]);
+        $post_list = Post::orderBy('updated_at' , 'desc')->paginate(9);
+        return view('posts.postlist', ['post_list' =>$post_list, 'title'=>'All Posts']);
     }
 
     public function tagindex(string $id)
@@ -27,7 +27,7 @@ class PostController extends Controller
         //
         $tag = Tag::findOrFail($id);
         $post_list = $tag->posts()->paginate(9);
-        return view('posts.postlist', ['post_list' =>$post_list]);
+        return view('posts.postlist', ['post_list' =>$post_list, 'title'=>('Posts tagged with: #'.$tag->name)]);
     }
 
     /**

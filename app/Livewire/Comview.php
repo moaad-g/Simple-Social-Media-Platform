@@ -17,6 +17,7 @@ class Comview extends Component
     public $comment_list;
     public $is_admin;
     public $expanded = false;
+    public $invalid = false;
     public $content = '';
 
     public function render()
@@ -33,6 +34,7 @@ class Comview extends Component
     public function collapse()
     {
         $this->expanded = false;
+        $this->invalid = false;  
         $this->content = '';
     }
 
@@ -49,7 +51,8 @@ class Comview extends Component
             $this->content = '';
             Mail::to($this->post->user->email)->send(new CommentNotification());
             return view('livewire.comview',['comment_list'=>$this->comment_list]);
-        } else {            
+        } else {       
+            $this->invalid = true;     
         }
     }
     

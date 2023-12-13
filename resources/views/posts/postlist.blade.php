@@ -1,7 +1,7 @@
 @vite('resources/css/app.css')
 @extends('layouts.default')
 
-@section('title', 'Posts:')
+@section('title', $title)
 
 @section('content')
     <div class="grid grid-cols-3 gap-3">
@@ -11,7 +11,7 @@
             </div>
         @endforeach
     </div>
-    <div class="flex items-center py-3">
+    <div class="flex items-center justify-center py-3">
         {{ $post_list->links() }}
     </div>
 @endsection

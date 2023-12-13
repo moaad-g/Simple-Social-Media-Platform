@@ -13,6 +13,7 @@ class Comedit extends Component
 {
     public $comment;
     public $expanded_edit = false;
+    public $invalid = false;  
     public $content = '';
 
     public function render()
@@ -29,6 +30,7 @@ class Comedit extends Component
     public function collapse_edit()
     {
         $this->expanded_edit = false;
+        $this->invalid = false;
         $this->content = '';
     }
     public function save_edit()
@@ -39,7 +41,8 @@ class Comedit extends Component
             $this->comment->save();
             $this->content = '';
             return redirect()->route('posts.show', ['id'=>$this->comment->post_id]);
-        } else {            
+        } else {       
+            $this->invalid = true;  
         }
 
     }
