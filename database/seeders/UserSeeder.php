@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Tag;
 use App\Models\Information;
 
 
@@ -30,5 +31,25 @@ class UserSeeder extends Seeder
         }
         Post::factory()->count(20)->create();
         Comment::factory()->count(20)->create();
+
+        $t1 = Tag::create([
+            'name' => 'funny'
+        ]);
+
+        $t2 = Tag::create([
+            'name' => 'educational'
+        ]);
+
+        $t3 = Tag::create([
+            'name' => 'sad'
+        ]);
+
+
+
+        $t1->posts()->attach(1);
+        $t2->posts()->attach(1);
+
+        $t3->posts()->attach(5);
+
     }
 }
