@@ -9,7 +9,7 @@
 <p class="font-bold text-sm py-3 hover:text-blue-400"><a href="{{ route('users.show', ['id'=>$post->user->id]) }}">Posted By:  {{ $post->user->information->name }}</a></p>
 <div class="flex space-x-3">
     @foreach ($post->tags as $tag)
-        <a href="{{ route('posts.tagindex', ['id'=>$tag->id])}}" class="hover:text-blue-300">#{{ $tag->name }}</p>
+        <a href="{{ route('posts.tagindex', ['id'=>$tag->id])}}" class="hover:text-blue-300">#{{ $tag->name }}</a>
     @endforeach
 </div>
 <div class="flex space-x-4">
