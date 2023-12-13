@@ -9,7 +9,7 @@
             <input class="text- box-content h-32 w-64 text-left align-top" type="text" name="content" placeholder="Type Here..." value="{{ old('content') }}">
         </div>
         <div class="flex items-center justify-center">
-            <select id="tags" name="tag_list" class="bg-gray-50" multiple>
+            <select id="tags" name="tag_list[]" class="bg-gray-50" multiple>
             <option selected>Choose tags</option>
             @foreach ($tag_list as $tag)
                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
