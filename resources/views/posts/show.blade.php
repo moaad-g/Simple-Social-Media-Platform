@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'P o s t')
+@section('title', 'Post:')
 
 @section('content')
 <div class="bg-gray-500 rounded text-white py-1 px-1 text-sm  border-solid border-2 borer-color border-gray-700" >
