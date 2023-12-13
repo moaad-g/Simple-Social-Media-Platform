@@ -52,18 +52,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validateData = $request->validate([
             'content' => 'required|max:280',
+            'image'=> 'nullable|mimes:png,jpg,jpeg|max:6000'
         ]);
         $user_id = Auth::id();
         $new_post = Post::create([
             'content' => $request->content,
             'user_id' => $user_id,
+            'image_path' => ''
         ]);
-        
-        foreach ($request->tag_list as $tag){
-            $new_post->tags()->attach($tag);
+
+        if ($request->image){
+            $image_file_name = $new_post->id.'-'.'image'.'.'.$request->image->extension();
+            $move = $request->image->move(public_path('images'),$image_file_name);
+            $new_post->image_path = $image_file_name;
+            $new_post->save();
+        }
+        if ($request->tag_list){
+            foreach ($request->tag_list as $tag){
+                $new_post->tags()->attach($tag);
+            }
         }
         session()->flash('message', 'post successful.');
         return redirect()->route('posts.show', ['id'=>$new_post->id]);

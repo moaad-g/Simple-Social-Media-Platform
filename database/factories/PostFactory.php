@@ -18,6 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'content' => fake()->text(),
+            'image_path' => "",
             'user_id' => rand(1,5)
             //
         ];

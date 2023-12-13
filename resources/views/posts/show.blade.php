@@ -4,7 +4,14 @@
 
 @section('content')
 <div class="bg-gray-500 rounded text-white py-1 px-1 text-sm  border-solid border-2 borer-color border-gray-700" >
-    <p>{{ $post -> content }}</p>
+    @if ($post->image_path == '')
+        <p>{{ $post -> content }}</p>
+    @else
+        <div class="grid grid-cols-2 gap-2">
+            <p>{{ $post -> content }}</p>
+            <img src="{{ asset('images/'.$post->image_path) }}" class="w-1/2 h-3/4">
+        </div>
+    @endif
 </div>
 <p class="font-bold text-sm py-3 hover:text-blue-400"><a href="{{ route('users.show', ['id'=>$post->user->id]) }}">Posted By:  {{ $post->user->information->name }}</a></p>
 <div class="flex space-x-3">

@@ -10,7 +10,8 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
         'content',
-        'user_id'
+        'user_id',
+        'image_path'
     ];
 
     public function comments(){
