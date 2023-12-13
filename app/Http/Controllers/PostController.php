@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -133,6 +134,9 @@ class PostController extends Controller
     {
         //
         $post = Post::findOrFail($id);
+        if ($post->image_path != ''){
+            File::delete(public_path("images/".$post->image_path));
+        }
         $post->comments()->delete();
         $post->delete();
         
