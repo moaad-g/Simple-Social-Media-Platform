@@ -48,13 +48,13 @@ class UserSeeder extends Seeder
         foreach ($all_posts as $post){
             $y = rand(1,10);
             if ($y%2 == 0){
-                $t1->posts()->attach($post->id);
+                $post->tags()->attach($t1->id);
             }
             if ($y < 6){
-                $t2->posts()->attach($post->id);
+                $post->tags()->attach($t2->id);
             }
             if ($y > 5){
-                $t2->posts()->attach($post->id);
+                $post->tags()->attach($t3->id);
             }
 
         }
